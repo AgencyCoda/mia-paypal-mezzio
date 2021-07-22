@@ -1,0 +1,41 @@
+{
+    "name": "agencycoda/mia-paypal-mezzio",
+    "description": "The library for Mezzio",
+    "version": "0.0.1",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [{
+        "name": "Matias Camiletti",
+        "homepage": "https://agencycoda.com"
+    }],
+    "require": {
+        "php": "^7.3",
+        "agencycoda/mia-core-mezzio": "dev-main",
+        "agencycoda/mia-eloquent-mezzio": "dev-main",
+        "agencycoda/mia-auth-mezzio": "dev-main",
+        "paypal/paypal-checkout-sdk": "^1.0",
+        "paypal/paypal-payouts-sdk": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mia\\PayPal\\": "src/"
+        }
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:8080 -t example/"
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/agencycoda/mia-core-mezzio.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/agencycoda/mia-eloquent-mezzio.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/agencycoda/mia-auth-mezzio.git"
+        }
+    ]
+}
