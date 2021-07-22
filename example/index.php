@@ -11,11 +11,13 @@ $helper = new PaypalHelper($clientId, $clientSecret);
 //$order = $helper->generateOrder();
 //print_r($order->result->id);
 
-//print_r($helper->generateProduct());
-print_r($helper->getProducts());
+//print_r($helper->createProduct());
+//print_r($helper->getProducts());
 
 $productId = 'PROD-6KR10421KP953941S';
 
-//print_r($helper->generatePlan());
-//print_r($helper->getPlans());
+//print_r($helper->generatePlan($productId));
+
+$planId = 'P-0WJ449211D884135FMD4Y2QQ';
+print_r($helper->getPlans());
 exit();

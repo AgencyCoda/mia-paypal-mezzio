@@ -56,7 +56,7 @@ class PaypalHelper
      * @param string $description
      * @return object
      */
-    public function generateProduct($name, $description)
+    public function createProduct($name, $description)
     {
         $request = new ProductsCreateRequest();
         $request->body = [
@@ -67,64 +67,86 @@ class PaypalHelper
         ];
         return $this->client->execute($request)->result;
     }
-
-    public function generatePlan()
+    /**
+     *
+     * @param string $productId
+     * @param string $name
+     * @param string $description
+     * @param double $amount
+     * @return object
+     */
+    public function createPlanMonthly($productId, $name, $description, $amount)
     {
-        try {
-            // Generate request
-            $request = new PlansCreateRequest();
-            $request->body = [
-                'product_id' => 'PLANTEST',
-                'name' => 'Plan Test 1',
-                'status' => 'ACTIVE',
-                'description' => 'First plan test',
-                'billing_cycles' => [
-                    [
-                        'frequency' => [
-                            'interval_unit' => 'MONTH',
-                            'interval_count' => 1,
-                        ],
-
-                        "tenure_type" => "REGULAR",
-                        "sequence" => 1,
-                        'total_cycles' => 0,
-                        'pricing_scheme' => [
-                            'fixed_price' => [
-                                'value' => 99,
-                                'currency_code' => 'USD'
-                            ]
-                        ]
-                    ]
-                ],
-                'payment_preferences' => [
-                    'auto_bill_outstanding' => true,
-                    'setup_fee_failure_action' => 'CANCEL'   
-                ]
-            ];
-            // Call API with your client and get a response for your call
-            return $this->client->execute($request);
-        }catch (HttpException $ex) {
-            echo $ex->statusCode;
-            print_r($ex->getMessage());
-            return false;
-        }
-    }
-
-    public function getPlans()
-    {
-        try {
-            // Generate request
-            $request = new PlansGetRequest();
-            // Call API with your client and get a response for your call
-            return $this->client->execute($request);
-        }catch (HttpException $ex) {
-            echo $ex->statusCode;
-            print_r($ex->getMessage());
-            return false;
-        }
+        return $this->createPlan($productId, $name, $description, $amount, [
+            'interval_unit' => 'MONTH',
+            'interval_count' => 1,
+        ]);
     }
     /**
-     * Undocumented function
+     *
+     * @param string $productId
+     * @param string $name
+     * @param string $description
+     * @param double $amount
+     * @return object
+     */
+    public function createPlanYearly($productId, $name, $description, $amount)
+    {
+        return $this->createPlan($productId, $name, $description, $amount, [
+            'interval_unit' => 'YEAR',
+            'interval_count' => 1,
+        ]);
+    }
+    /**
+     * 
+     *
+     * @param string $productId
+     * @param string $name
+     * @param string $description
+     * @param double $amount
+     * @param array $frequency
+     * @return object
+     */
+    public function createPlan($productId, $name, $description, $amount, $frequency = [])
+    {
+        $request = new PlansCreateRequest();
+        $request->body = [
+            'product_id' => $productId,
+            'name' => $name,
+            'status' => 'ACTIVE',
+            'description' => $description,
+            'billing_cycles' => [
+                [
+                    'frequency' => $frequency,
+                    "tenure_type" => "REGULAR",
+                    "sequence" => 1,
+                    'total_cycles' => 0,
+                    'pricing_scheme' => [
+                        'fixed_price' => [
+                            'value' => $amount,
+                            'currency_code' => 'USD'
+                        ]
+                    ]
+                ]
+            ],
+            'payment_preferences' => [
+                'auto_bill_outstanding' => true,
+                'setup_fee_failure_action' => 'CANCEL'   
+            ]
+        ];
+        return $this->client->execute($request)->result;
+    }
+    /**
+     *
+     * @return object
+     */
+    public function getPlans()
+    {
+        $request = new PlansGetRequest();
+        return $this->client->execute($request);
+    }
+    /**
+     * 
      *
      * @return \PayPalHttp\HttpResponse|boolean
      */
@@ -151,7 +173,11 @@ class PaypalHelper
             print_r($ex->getMessage());
         }
     }
-
+    /**
+     * Init PayPal Client
+     *
+     * @return void
+     */
     protected function initClient()
     {
         $environment = new SandboxEnvironment($this->clientId, $this->clientSecret);
