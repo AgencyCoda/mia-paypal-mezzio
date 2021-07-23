@@ -16,8 +16,13 @@ $helper = new PaypalHelper($clientId, $clientSecret);
 
 $productId = 'PROD-6KR10421KP953941S';
 
-//print_r($helper->generatePlan($productId));
+//print_r($helper->createPlanYearly($productId, 'Plan Test 1 Year', 'First plan test year', 2870));
 
-$planId = 'P-0WJ449211D884135FMD4Y2QQ';
-print_r($helper->getPlans());
+//$planId = 'P-0WJ449211D884135FMD4Y2QQ';
+//print_r($helper->getPlans());
+//exit();
+
+print_r($helper->getBillingAgreement('I-3R0T3BJ91US9'));
 exit();
+
+// Event Type: PAYMENT.SALE.COMPLETED - Pago correcto de la subscription

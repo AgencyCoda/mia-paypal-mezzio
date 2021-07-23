@@ -22,7 +22,7 @@
         }
     },
     "scripts": {
-        "serve": "php -S 0.0.0.0:8080 -t example/"
+        "serve": "php -S 0.0.0.0:8181 -t example/"
     },
     "repositories": [
         {

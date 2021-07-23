@@ -2,6 +2,7 @@
 
 namespace Mia\PayPal;
 
+use Mia\PayPal\Request\BillingAggrementGetRequest;
 use Mia\PayPal\Request\PlansCreateRequest;
 use Mia\PayPal\Request\PlansGetRequest;
 use Mia\PayPal\Request\ProductsCreateRequest;
@@ -38,6 +39,16 @@ class PaypalHelper
         $this->clientId = $client_id;
         $this->clientSecret = $client_secret;
         $this->initClient();
+    }
+    /**
+     *
+     * @param string $agreementId
+     * @return object
+     */
+    public function getBillingAgreement($agreementId)
+    {
+        $request = new BillingAggrementGetRequest($agreementId);
+        return $this->client->execute($request)->result;
     }
     /**
      * 
