@@ -26,3 +26,4 @@ print_r($helper->getBillingAgreement('I-3R0T3BJ91US9'));
 exit();
 
 // Event Type: PAYMENT.SALE.COMPLETED - Pago correcto de la subscription
+// Billing Agreement - Status: ACTIVE

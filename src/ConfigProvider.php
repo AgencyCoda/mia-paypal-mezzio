@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Mia\PayPal;
 
+use Mia\Paypal\Factory\PaypalHelperFactory;
+
 class ConfigProvider
 {
     /**
@@ -29,7 +31,7 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                //StripeHelper::class => StripeHelperFactory::class,
+                PaypalHelper::class => PaypalHelperFactory::class,
                 //PaymentHandler::class => PaymentHandlerFactory::class,
             ],
         ];
