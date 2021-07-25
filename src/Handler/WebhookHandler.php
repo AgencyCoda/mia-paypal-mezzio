@@ -58,5 +58,8 @@ abstract class WebhookHandler extends \Mia\Auth\Request\MiaAuthRequestHandler
 
     }
 
-    abstract protected function configWebhook(\Psr\Http\Message\ServerRequestInterface $request);
+    protected function configWebhook(\Psr\Http\Message\ServerRequestInterface $request)
+    {
+        
+    }
 }
