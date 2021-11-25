@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Mia\Paypal\Factory;
+namespace Mia\PayPal\Factory;
 
-use Mia\PayPal\PaypalHelper;
+use Mia\PayPal\Helper\PaypalHelper;
 use Psr\Container\ContainerInterface;
 
 class PaypalHelperFactory 

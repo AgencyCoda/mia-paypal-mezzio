@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace Mia\PayPal;
 
-use Mia\Paypal\Factory\PaypalHelperFactory;
+use Mia\PayPal\Factory\PaypalHelperFactory;
+use Mia\PayPal\Helper\PaypalHelper;
 
 class ConfigProvider
 {

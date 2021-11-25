@@ -1,10 +1,10 @@
 <?php
 
-namespace Mia\Paypal\Handler;
+namespace Mia\PayPal\Handler;
 
 use Mia\Core\Diactoros\MiaJsonErrorResponse;
 use Mia\Core\Diactoros\MiaJsonResponse;
-use Mia\PayPal\PaypalHelper;
+use Mia\PayPal\Helper\PaypalHelper;
 
 /**
  * Description of PayHandler

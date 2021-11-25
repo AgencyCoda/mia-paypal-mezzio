@@ -1,6 +1,6 @@
 <?php
 
-use Mia\PayPal\PaypalHelper;
+use Mia\PayPal\Helper\PaypalHelper;
 
 require '../vendor/autoload.php';
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mia\PayPal;
+namespace Mia\PayPal\Helper;
 
 use Mia\PayPal\Request\BillingAggrementGetRequest;
 use Mia\PayPal\Request\PlansCreateRequest;
